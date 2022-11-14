@@ -153,12 +153,32 @@ npm_repositories()
 
 http_archive(
     name = "aspect_rules_ts",
-    sha256 = "1149d4cf7f210de67e0fc5cd3e8f624de3ee976ac05af4f1484e57a74c12f2dc",
-    strip_prefix = "rules_ts-1.0.0-rc5",
-    url = "https://github.com/aspect-build/rules_ts/archive/refs/tags/v1.0.0-rc5.tar.gz",
+    sha256 = "1ed2dc702b3d5fcf2b8e6ca4a5dae23fbc8e5570643d2a5cf8f5f09c7c44bc15",
+    strip_prefix = "rules_ts-1.0.0-rc6",
+    url = "https://github.com/aspect-build/rules_ts/archive/refs/tags/v1.0.0-rc6.tar.gz",
 )
 
 load("@aspect_rules_ts//ts:repositories.bzl", "rules_ts_dependencies")
 
 rules_ts_dependencies(ts_version_from = "//typescript:package.json")
-# END: typescript dependencies
+
+http_archive(
+    name = "aspect_rules_webpack",
+    sha256 = "828e1497c9ad993d57bf9aa6661bda1a587048b39715a35079e18a3e31ca210c",
+    strip_prefix = "rules_webpack-0.5.2",
+    url = "https://github.com/aspect-build/rules_webpack/archive/refs/tags/v0.5.2.tar.gz",
+)
+
+load("@aspect_rules_webpack//webpack:dependencies.bzl", "rules_webpack_dependencies")
+
+rules_webpack_dependencies()
+
+load("@aspect_rules_webpack//webpack:repositories.bzl", "webpack_repositories")
+
+webpack_repositories(name = "webpack")
+
+load("@webpack//:npm_repositories.bzl", webpack_npm_repositories = "npm_repositories")
+
+webpack_npm_repositories()
+
+# END: Typescript dependencies
