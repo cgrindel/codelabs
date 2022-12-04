@@ -5,6 +5,5 @@
     "module": "commonjs",
     "isolatedModules": true,
     "target": "ES2020"
-  },
-  "exclude": ["bazel-out", "bazel-bin"]
+  }
 }
