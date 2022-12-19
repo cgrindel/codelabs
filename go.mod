@@ -1,4 +1,4 @@
-module github.com/engflow/codelabs
+module github.com/aspect-build/codelabs
 
 go 1.19
 
