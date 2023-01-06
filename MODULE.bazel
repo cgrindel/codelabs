@@ -83,10 +83,12 @@ go_deps.module(
     path = "google.golang.org/grpc",
     version = "v1.50.1",
     sum = "h1:DS/BukOZWp8s6p4Dt/tOaJaTQyPyOoCcrjroHuCeLzY=",
+    build_file_proto_mode = "disable"
 )
 go_deps.module(
     path = "google.golang.org/protobuf",
     sum = "h1:d0NfwRgPtno5B1Wa6L2DAG+KivqkdutMf1UhdNx175w=",
     version = "v1.28.1",
+    build_file_proto_mode = "disable"
 )
 use_repo(go_deps, "org_golang_google_grpc", "org_golang_google_protobuf")
