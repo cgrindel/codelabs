@@ -2,7 +2,7 @@
 module(name = "codelabs")
 
 bazel_dep(name = "aspect_bazel_lib",   version = "1.19.0")
-bazel_dep(name = "aspect_rules_js",    version = "1.13.0")
+bazel_dep(name = "aspect_rules_js",    version = "1.13.1")
 bazel_dep(name = "aspect_rules_ts",    version = "1.0.5")
 bazel_dep(name = "gazelle",            version = "0.28.0", repo_name = "bazel_gazelle")
 bazel_dep(name = "protobuf",           version = "3.19.6")
@@ -66,10 +66,20 @@ npm.npm_translate_lock(
     name = "npm",
     
     pnpm_lock = "//:pnpm-lock.yaml",
-    
+    npmrc = "//:.npmrc",
 )
 
 use_repo(npm, "npm")
+
+rules_ts_ext = use_extension(
+    "@aspect_rules_ts//ts:extensions.bzl",
+    "ext",
+    dev_dependency = True,
+)
+
+rules_ts_ext.deps()
+
+use_repo(rules_ts_ext, "npm_typescript")
 
 # Go
 # https://github.com/bazelbuild/rules_go/tree/master/tests/bcr

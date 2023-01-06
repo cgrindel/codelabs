@@ -1,16 +1,13 @@
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@npm//:defs.bzl", "npm_link_all_packages")
-load("@npm//typescript:typescript/package_json.bzl", "bin")
 
 npm_link_all_packages(name = "node_modules")
-
-bin.tsc(
-    name = "typecheck",
-    srcs = ["app.ts"],
-    args = ["app.ts"],
-)
 
 ts_project(
     name = "typescript",
     srcs = ["app.ts"],
+    deps = [
+        "//proto/logger:logger_ts_proto",
+    ],
 )
+

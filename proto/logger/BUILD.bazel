@@ -1,6 +1,7 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+load(":ts_proto_library.bzl", "ts_proto_library")
 
 proto_library(
     name = "logger_proto",
@@ -20,5 +21,11 @@ go_library(
     name = "logger",
     embed = [":logger_go_proto"],
     importpath = "bootcamp/proto/logger",
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "logger_ts_proto",
+    proto = ":logger_proto",
     visibility = ["//visibility:public"],
 )
