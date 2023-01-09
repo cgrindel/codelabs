@@ -1,6 +1,6 @@
 ""
 load("@aspect_rules_js//js:defs.bzl", "js_library")
-load("@npm//proto:protobufjs-cli/package_json.bzl", "bin")
+load("@npm//schema:protobufjs-cli/package_json.bzl", "bin")
 load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 
 def _proto_sources_impl(ctx):
@@ -79,8 +79,8 @@ def ts_proto_library(name, proto, deps = [], **kwargs):
             ts_target,
         ],
         deps = deps + [
-            "//proto:node_modules/protobufjs",
-            "//proto:node_modules/long",
+            "//schema:node_modules/protobufjs",
+            "//schema:node_modules/long",
         ],
         **kwargs
     )

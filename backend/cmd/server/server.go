@@ -14,7 +14,7 @@ import (
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/grpc"
 	// TODO(dannark): change to "github.com/dkelmer/bootcamp/proto/greeter" when moved
-	pb "bootcamp/proto/logger"
+	pb "bootcamp/schema/logger"
 	"google.golang.org/grpc/reflection"
 )
 

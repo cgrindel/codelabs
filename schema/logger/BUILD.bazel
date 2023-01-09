@@ -12,7 +12,7 @@ proto_library(
 go_proto_library(
     name = "logger_go_proto",
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
-    importpath = "bootcamp/proto/logger",
+    importpath = "bootcamp/schema/logger",
     proto = ":logger_proto",
     visibility = ["//visibility:public"],
 )
@@ -20,7 +20,7 @@ go_proto_library(
 go_library(
     name = "logger",
     embed = [":logger_go_proto"],
-    importpath = "bootcamp/proto/logger",
+    importpath = "bootcamp/schema/logger",
     visibility = ["//visibility:public"],
 )
 
