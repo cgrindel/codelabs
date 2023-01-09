@@ -1,0 +1,4 @@
+alias(
+    name = "backend",
+    actual = "//backend/cmd/server",
+)

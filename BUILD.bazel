@@ -1,4 +1,4 @@
-load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_binary")
+load("@bazel_gazelle//:def.bzl", "gazelle")
 load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 
@@ -10,27 +10,6 @@ compile_pip_requirements(
     requirements_txt = "requirements_lock.txt",
 )
 
-# Configure BUILD file generation
-# gazelle:prefix github.com/aspect-build/codelabs
-#gazelle_binary(
-#    name = "gazelle_bin",
-# languages = DEFAULT_LANGUAGES + [
-#     "//gazelle/js",
-#     "@bazel_skylib//gazelle/bzl",
-# ],
-#)
 gazelle(
     name = "gazelle",
 )
-
-# gazelle(
-#     name = "gazelle_update_repos",
-#     args = [
-#         "-build_file_proto_mode=disable_global",
-#         "-from_file=go.mod",
-#         "-to_macro=deps.bzl%go_dependencies",
-#         "-prune",
-#     ],
-#     command = "update-repos",
-#     visibility = ["//:__subpackages__"],
-# )

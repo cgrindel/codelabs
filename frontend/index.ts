@@ -1,4 +1,4 @@
-import {LogMessage} from '../schema/logger/logger_ts_proto'
+import type {LogMessage} from '../schema/logger/logger_ts_proto'
 
 class ServerLogs {
   getServerLogs(): Promise<Array<LogMessage>> {

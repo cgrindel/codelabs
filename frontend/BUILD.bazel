@@ -19,7 +19,10 @@ bin.http_server_binary(
 
 js_run_devserver(
     name = "serve",
-    args = ["."],
-    data = ["index.html"],
+    args = ["frontend"],
+    data = [
+        "index.html",
+        "index.js",
+    ],
     tool = ":http_server",
 )
