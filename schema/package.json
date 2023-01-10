@@ -1,7 +1,7 @@
 {
-    "dependencies": {
-        "long": "^5.2.1",
-        "protobufjs": "7.1.2",
-        "protobufjs-cli": "^1.0.2"
-    }
+  "dependencies": {
+    "long": "^5.2.1",
+    "protobufjs": "7.1.2",
+    "protobufjs-cli": "^1.0.2"
+  }
 }

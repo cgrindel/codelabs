@@ -1,4 +1,5 @@
 ""
+
 load("@aspect_rules_js//js:defs.bzl", "js_library")
 load("@npm//schema:protobufjs-cli/package_json.bzl", "bin")
 load("@rules_proto//proto:defs.bzl", "ProtoInfo")

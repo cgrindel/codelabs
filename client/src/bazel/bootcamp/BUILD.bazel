@@ -10,26 +10,26 @@ java_library(
         # "//schema/logger:logger_java_grpc",
         artifact("io.grpc:grpc-stub"),
         artifact("io.grpc:grpc-api"),
-    ]
+    ],
 )
 
 java_binary(
     name = "JavaLoggingClient",
     srcs = ["JavaLoggingClient.java"],
+    visibility = ["//visibility:public"],
     deps = [":JavaLoggingClientLibrary"],
-    visibility = ["//visibility:public"]
 )
 
 java_test(
     name = "JavaLoggingClientLibraryTest",
     srcs = ["JavaLoggingClientLibraryTest.java"],
-    deps = [":JavaLoggingClientLibrary"]
+    deps = [":JavaLoggingClientLibrary"],
 )
 
 java_test(
     name = "JavaLoggingClientTest",
     srcs = ["JavaLoggingClientTest.java"],
-    deps = [":JavaLoggingClient"]
+    deps = [":JavaLoggingClient"],
 )
 
 java_library(
