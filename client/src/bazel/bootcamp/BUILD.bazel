@@ -36,6 +36,9 @@ java_library(
     name = "logger_java_grpc",
     srcs = ["LoggerGrpc.java"],
     deps = [
+        "//schema/logger:logger_java_proto",
+        artifact("com.google.guava:guava"),
+        artifact("com.google.protobuf:protobuf-java"),
         artifact("io_grpc:grpc-api"),
         artifact("io_grpc:grpc-core"),
         artifact("io_grpc:grpc-netty-shaded"),

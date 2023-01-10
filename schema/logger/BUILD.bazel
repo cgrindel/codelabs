@@ -59,4 +59,5 @@ java_proto_library(
 # Then we just compile it as if it's our own source file.
 # After all, checking in generated code is pretty typical in some ecosystems, and so there's
 # no reason we can't do it under Bazel as well...
-# So we put that LoggerGrpc.java in the client folder.
+# so we put that LoggerGrpc.java in the client folder.
+# And I had to delete the @Generated annotation for some reason.

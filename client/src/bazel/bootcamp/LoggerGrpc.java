@@ -1,13 +1,9 @@
 package bazel.bootcamp;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import com.google.protobuf.Empty;
 
 /**
  */
-// @javax.annotation.Generated(
-//     value = "by gRPC proto compiler (version 1.51.0)",
-//     comments = "Source: schema/logger/logger.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class LoggerGrpc {
 
@@ -16,28 +12,29 @@ public final class LoggerGrpc {
   public static final String SERVICE_NAME = "Logger";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<LogMessage, Empty> getSendLogMessageMethod;
+  private static volatile io.grpc.MethodDescriptor<bazel.bootcamp.LogMessage,
+      bazel.bootcamp.Empty> getSendLogMessageMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "SendLogMessage",
-      requestType = LogMessage.class,
-      responseType = Empty.class,
+      requestType = bazel.bootcamp.LogMessage.class,
+      responseType = bazel.bootcamp.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<LogMessage,
-      Empty> getSendLogMessageMethod() {
-    io.grpc.MethodDescriptor<LogMessage, Empty> getSendLogMessageMethod;
+  public static io.grpc.MethodDescriptor<bazel.bootcamp.LogMessage,
+      bazel.bootcamp.Empty> getSendLogMessageMethod() {
+    io.grpc.MethodDescriptor<bazel.bootcamp.LogMessage, bazel.bootcamp.Empty> getSendLogMessageMethod;
     if ((getSendLogMessageMethod = LoggerGrpc.getSendLogMessageMethod) == null) {
       synchronized (LoggerGrpc.class) {
         if ((getSendLogMessageMethod = LoggerGrpc.getSendLogMessageMethod) == null) {
           LoggerGrpc.getSendLogMessageMethod = getSendLogMessageMethod =
-              io.grpc.MethodDescriptor.<LogMessage, Empty>newBuilder()
+              io.grpc.MethodDescriptor.<bazel.bootcamp.LogMessage, bazel.bootcamp.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SendLogMessage"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  LogMessage.getDefaultInstance()))
+                  bazel.bootcamp.LogMessage.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Empty.getDefaultInstance()))
+                  bazel.bootcamp.Empty.getDefaultInstance()))
               .setSchemaDescriptor(new LoggerMethodDescriptorSupplier("SendLogMessage"))
               .build();
         }
@@ -96,8 +93,8 @@ public final class LoggerGrpc {
 
     /**
      */
-    public void sendLogMessage(LogMessage request,
-        io.grpc.stub.StreamObserver<Empty> responseObserver) {
+    public void sendLogMessage(bazel.bootcamp.LogMessage request,
+        io.grpc.stub.StreamObserver<bazel.bootcamp.Empty> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSendLogMessageMethod(), responseObserver);
     }
 
@@ -107,8 +104,8 @@ public final class LoggerGrpc {
             getSendLogMessageMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
-                LogMessage,
-                Empty>(
+                bazel.bootcamp.LogMessage,
+                bazel.bootcamp.Empty>(
                   this, METHODID_SEND_LOG_MESSAGE)))
           .build();
     }
@@ -130,8 +127,8 @@ public final class LoggerGrpc {
 
     /**
      */
-    public void sendLogMessage(LogMessage request,
-        io.grpc.stub.StreamObserver<Empty> responseObserver) {
+    public void sendLogMessage(bazel.bootcamp.LogMessage request,
+        io.grpc.stub.StreamObserver<bazel.bootcamp.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSendLogMessageMethod(), getCallOptions()), request, responseObserver);
     }
@@ -153,7 +150,7 @@ public final class LoggerGrpc {
 
     /**
      */
-    public Empty sendLogMessage(LogMessage request) {
+    public bazel.bootcamp.Empty sendLogMessage(bazel.bootcamp.LogMessage request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSendLogMessageMethod(), getCallOptions(), request);
     }
@@ -175,8 +172,8 @@ public final class LoggerGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Empty> sendLogMessage(
-        LogMessage request) {
+    public com.google.common.util.concurrent.ListenableFuture<bazel.bootcamp.Empty> sendLogMessage(
+        bazel.bootcamp.LogMessage request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSendLogMessageMethod(), getCallOptions()), request);
     }
@@ -202,8 +199,8 @@ public final class LoggerGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_SEND_LOG_MESSAGE:
-          serviceImpl.sendLogMessage((LogMessage) request,
-              (io.grpc.stub.StreamObserver<Empty>) responseObserver);
+          serviceImpl.sendLogMessage((bazel.bootcamp.LogMessage) request,
+              (io.grpc.stub.StreamObserver<bazel.bootcamp.Empty>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -227,7 +224,7 @@ public final class LoggerGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return GreeterProto.getDescriptor();
+      return bazel.bootcamp.GreeterProto.getDescriptor();
     }
 
     @java.lang.Override
