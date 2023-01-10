@@ -1,5 +1,5 @@
 "Declare dependencies for bzlmod, see https://bazel.build/build/bzlmod"
-module(name = "codelabs")
+module(name = "aspect_codelab")
 
 bazel_dep(name = "aspect_bazel_lib",   version = "1.19.0")
 bazel_dep(name = "aspect_rules_js",    version = "1.13.1")
@@ -39,84 +39,10 @@ use_repo(pip, "pip")
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 
 maven.install(
-    # # Vendored from
-    # # https://github.com/grpc/grpc-java/blob/a40e4343f5f2bec03fb3ed22029ba3b15dd57d00/repositories.bzl#L12
-    artifacts = [
-        # "com.google.android:annotations:4.1.1.4",
-        # "com.google.api.grpc:proto-google-common-protos:2.9.0",
-        # "com.google.auth:google-auth-library-credentials:0.22.0",
-        # "com.google.auth:google-auth-library-oauth2-http:0.22.0",
-        # "com.google.auto.value:auto-value-annotations:1.9",
-        # "com.google.auto.value:auto-value:1.9",
-        # "com.google.code.findbugs:jsr305:3.0.2",
-        # "com.google.code.gson:gson:2.9.0",
-        # "com.google.errorprone:error_prone_annotations:2.9.0",
-        # "com.google.guava:failureaccess:1.0.1",
-        # "com.google.guava:guava:31.0.1-android",
-        # "com.google.j2objc:j2objc-annotations:1.3",
-        # "com.google.re2j:re2j:1.6",
-        # "com.google.truth:truth:1.0.1",
-        # "com.squareup.okhttp:okhttp:2.7.5",
-        # "com.squareup.okio:okio:1.17.5",
-        # "io.netty:netty-buffer:4.1.79.Final",
-        # "io.netty:netty-codec-http2:4.1.79.Final",
-        # "io.netty:netty-codec-http:4.1.79.Final",
-        # "io.netty:netty-codec-socks:4.1.79.Final",
-        # "io.netty:netty-codec:4.1.79.Final",
-        # "io.netty:netty-common:4.1.79.Final",
-        # "io.netty:netty-handler-proxy:4.1.79.Final",
-        # "io.netty:netty-handler:4.1.79.Final",
-        # "io.netty:netty-resolver:4.1.79.Final",
-        # "io.netty:netty-tcnative-boringssl-static:2.0.54.Final",
-        # "io.netty:netty-tcnative-classes:2.0.54.Final",
-        # "io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.79.Final",
-        # "io.netty:netty-transport-native-unix-common:4.1.79.Final",
-        # "io.netty:netty-transport:4.1.79.Final",
-        # "io.opencensus:opencensus-api:0.24.0",
-        # "io.opencensus:opencensus-contrib-grpc-metrics:0.24.0",
-        # "io.perfmark:perfmark-api:0.25.0",
-        # "junit:junit:4.12",
-        # "org.apache.tomcat:annotations-api:6.0.53",
-        # "org.codehaus.mojo:animal-sniffer-annotations:1.21",
-    
-    
-    # From README:
-    # <dependency>
-#   <groupId>io.grpc</groupId>
-#   <artifactId>grpc-netty-shaded</artifactId>
-#   <version>1.51.0</version>
-#   <scope>runtime</scope>
-# </dependency>
-# <dependency>
-#   <groupId>io.grpc</groupId>
-#   <artifactId>grpc-protobuf</artifactId>
-#   <version>1.51.0</version>
-# </dependency>
-# <dependency>
-#   <groupId>io.grpc</groupId>
-#   <artifactId>grpc-stub</artifactId>
-#   <version>1.51.0</version>
-# </dependency>
-# <dependency> <!-- necessary for Java 9+ -->
-#   <groupId>org.apache.tomcat</groupId>
-#   <artifactId>annotations-api</artifactId>
-#   <version>6.0.53</version>
-#   <scope>provided</scope>
-# </dependency>
-    
-        "io.grpc:grpc-netty-shaded:1.51.1",
-        "io.grpc:grpc-protobuf:1.51.1",
-        "io.grpc:grpc-stub:1.51.1",
-        "io.grpc:grpc-all:1.51.1",
-    ],
+    artifacts = ["io.grpc:grpc-all:1.51.1"],
     lock_file = "//:maven_install.json",
 )
 
-maven.artifact(
-    artifact = "guava",
-    group = "com.google.guava",
-    version = "31.1-jre",
-)
 use_repo(
     maven,
     "maven",
