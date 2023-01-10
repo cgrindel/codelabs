@@ -10,6 +10,7 @@ compile_pip_requirements(
     requirements_txt = "requirements_lock.txt",
 )
 
+# gazelle:prefix github.com/aspect-build/codelabs
 gazelle(
     name = "gazelle",
 )
