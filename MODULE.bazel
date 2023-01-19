@@ -1,6 +1,4 @@
 "Declare dependencies for bzlmod, see https://bazel.build/build/bzlmod"
-module(name = "aspect_codelab")
-
 bazel_dep(name = "aspect_bazel_lib",   version = "1.19.0")
 bazel_dep(name = "aspect_rules_js",    version = "1.13.1")
 bazel_dep(name = "aspect_rules_ts",    version = "1.0.5")
