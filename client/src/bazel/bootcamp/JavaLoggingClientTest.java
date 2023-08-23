@@ -13,7 +13,8 @@ public final class JavaLoggingClientTest {
 
   @Test
   public void testHello() throws Exception {
-    System.out.println("Hello Java!");
+    String javaVersion = System.getProperty("java.version");
+    System.out.println("Java Version: " + javaVersion);
   }
 
   @Test
