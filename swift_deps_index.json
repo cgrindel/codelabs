@@ -1,37 +1,37 @@
 {
   "direct_dep_identities": [
-    "swift-log"
+    "swifterswift"
   ],
   "modules": [
     {
-      "name": "Logging",
-      "c99name": "Logging",
+      "name": "SwifterSwift",
+      "c99name": "SwifterSwift",
       "src_type": "swift",
-      "label": "@swiftpkg_swift_log//:Sources_Logging",
-      "package_identity": "swift-log",
+      "label": "@swiftpkg_swifterswift//:Sources_SwifterSwift",
+      "package_identity": "swifterswift",
       "product_memberships": [
-        "Logging"
+        "SwifterSwift"
       ]
     }
   ],
   "products": [
     {
-      "identity": "swift-log",
-      "name": "Logging",
+      "identity": "swifterswift",
+      "name": "SwifterSwift",
       "type": "library",
       "target_labels": [
-        "@swiftpkg_swift_log//:Sources_Logging"
+        "@swiftpkg_swifterswift//:Sources_SwifterSwift"
       ]
     }
   ],
   "packages": [
     {
-      "name": "swiftpkg_swift_log",
-      "identity": "swift-log",
+      "name": "swiftpkg_swifterswift",
+      "identity": "swifterswift",
       "remote": {
-        "commit": "532d8b529501fb73a2455b179e0bbb6d49b652ed",
-        "remote": "https://github.com/apple/swift-log",
-        "version": "1.5.3"
+        "commit": "933f27d8e7fa0bf8200a5d6235e0de383b801126",
+        "remote": "https://github.com/SwifterSwift/SwifterSwift.git",
+        "version": "5.3.0"
       }
     }
   ]
