@@ -35,7 +35,7 @@ public struct MostRecentLogger {
 }
 
 extension MostRecentLogger: LoggerProtocol {
-    public mutating func log(level: Level, _ message: @autoclosure () -> String) {
+    public mutating func log(level: Level, message: @autoclosure () -> String) {
         let msg = Message(date: dateProvider(), level: level, message: message())
         add(msg)
     }
