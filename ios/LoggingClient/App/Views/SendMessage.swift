@@ -20,13 +20,31 @@ struct SendMessage: View {
                     }
                 }
                 Section("Log Message") {
-                    TextField("Message", text: $message)
+                    HStack {
+                        TextField("Message", text: $message)
+                        Spacer()
+                        Button {
+                            sendMessage()
+                        } label: {
+                            Image(systemName: "paperplane")
+                        }
+                        .disabled(isInvalid)
+                    }
                 }
             }
             .sheet(isPresented: $showEditConnection) {
                 EditConnection(host: modelData.host, port: modelData.port)
             }
         }
+    }
+
+    var isInvalid: Bool {
+        message.isEmpty
+    }
+
+    func sendMessage() {
+        // TODO: Send message
+        message = ""
     }
 }
 
