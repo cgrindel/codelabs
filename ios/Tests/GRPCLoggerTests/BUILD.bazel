@@ -8,5 +8,10 @@ swift_test(
         "LoggerTests.swift",
     ],
     module_name = "GRPCLoggerTests",
-    deps = ["//ios/Sources/GRPCLogger"],
+    deps = [
+        "//ios/Sources/GRPCLogger",
+        "//schema/logger:logger_client_swift_grpc",
+        "//schema/logger:logger_server_swift_grpc",
+        "//schema/logger:logger_swift_proto",
+    ],
 )

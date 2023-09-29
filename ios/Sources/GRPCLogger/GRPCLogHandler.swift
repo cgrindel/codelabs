@@ -3,7 +3,7 @@ import schema_logger_logger_client_swift_grpc
 import schema_logger_logger_proto
 import SwifterSwift
 
-public struct GRPCLogger: LogHandler {
+public struct GRPCLogHandler: LogHandler {
     private let loggerClient: LoggerAsyncClientProtocol
 
     public var logLevel: Level = .info

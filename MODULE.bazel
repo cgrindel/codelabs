@@ -85,6 +85,20 @@ use_repo(go_sdk, "go_sdk")
 go_deps.from_file(go_mod = "//:go.mod")
 use_repo(go_deps, "org_golang_google_grpc", "org_golang_google_protobuf")
 
+non_module_deps = use_extension("@rules_swift//swift:extensions.bzl", "non_module_deps")
+use_repo(
+    non_module_deps,
+    "build_bazel_rules_swift_index_import",
+    "build_bazel_rules_swift_local_config",
+    "com_github_apple_swift_log",
+    "com_github_apple_swift_nio",
+    "com_github_apple_swift_nio_extras",
+    "com_github_apple_swift_nio_http2",
+    "com_github_apple_swift_nio_transport_services",
+    "com_github_apple_swift_protobuf",
+    "com_github_grpc_grpc_swift",
+)
+
 # swift_deps START
 swift_deps = use_extension(
     "@rules_swift_package_manager//:extensions.bzl",
