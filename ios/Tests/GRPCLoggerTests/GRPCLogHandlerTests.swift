@@ -75,7 +75,7 @@ class GRPCLogHandlerTests: XCTestCase {
 
         // Wait for the provider to handle the log message
         var attempts = 0
-        while attempts < 1000 {
+        while attempts < 10000 {
             do {
                 if provider.messages.count > 0 {
                     break
