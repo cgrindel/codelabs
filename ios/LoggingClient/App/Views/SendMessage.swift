@@ -12,7 +12,7 @@ struct SendMessage: View {
                     HStack {
                         Image(systemName: "wifi.square.fill")
                             .foregroundColor(.blue)
-                        Text("\(modelData.host) : \(modelData.port)")
+                        Text("\(modelData.host) : \(String(format: "%d", modelData.port))")
                         Spacer()
                         Button("Edit") {
                             showEditConnection.toggle()
