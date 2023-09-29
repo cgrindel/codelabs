@@ -12,7 +12,7 @@ class ModelData: ObservableObject {
 
     private var group: MultiThreadedEventLoopGroup
 
-    init(host: String = "", port: Int = 0, numberOfThreads: Int = 1) {
+    init(host: String = .defaultHost, port: Int = .defaultGRPCPort, numberOfThreads: Int = 1) {
         self.host = host
         self.port = port
         group = MultiThreadedEventLoopGroup(numberOfThreads: numberOfThreads)
@@ -29,4 +29,12 @@ class ModelData: ObservableObject {
     var logger: Logger {
         Logger(handler: handler)
     }
+}
+
+public extension Int {
+    static let defaultGRPCPort = 50051
+}
+
+public extension String {
+    static let defaultHost = "127.0.0.1"
 }

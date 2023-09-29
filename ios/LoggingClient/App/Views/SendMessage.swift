@@ -43,7 +43,7 @@ struct SendMessage: View {
     }
 
     func sendMessage() {
-        // TODO: Send message
+        modelData.logger.info(message)
         message = ""
     }
 }
