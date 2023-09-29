@@ -1,13 +1,15 @@
 load("@rules_apple//apple:ios.bzl", "ios_application")
 load("@rules_swift//swift:swift.bzl", "swift_library")
 
+# gazelle:swift_default_module_name LoggingClientApp
+
 swift_library(
     name = "AppLib",
     srcs = [
-        "ContentView.swift",
         "LoggingClientApp.swift",
+        "Views/ContentView.swift",
     ],
-    module_name = "App",
+    module_name = "LoggingClientApp",
     tags = ["manual"],
     visibility = ["//visibility:public"],
 )
