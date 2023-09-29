@@ -22,6 +22,9 @@ struct SendMessage: View {
                 Section("Log Message") {
                     HStack {
                         TextField("Message", text: $message)
+                            .onSubmit {
+                                sendMessage()
+                            }
                         Spacer()
                         Button {
                             sendMessage()
@@ -43,6 +46,9 @@ struct SendMessage: View {
     }
 
     func sendMessage() {
+        guard !isInvalid else {
+            return
+        }
         modelData.logger.info(message)
         message = ""
     }
