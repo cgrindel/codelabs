@@ -1,5 +1,10 @@
 extension ModelData {
     static func previewData() -> ModelData {
-        return ModelData()
+        let modelData = ModelData()
+        modelData.sentMsgs = [
+            SentMessage(message: "Hello"),
+            SentMessage(message: "Goodbye"),
+        ]
+        return modelData
     }
 }

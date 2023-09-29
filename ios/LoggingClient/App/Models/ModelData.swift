@@ -9,6 +9,7 @@ import schema_logger_logger_client_swift_grpc
 class ModelData: ObservableObject {
     @Published var host: String
     @Published var port: Int
+    @Published var sentMsgs: [SentMessage] = []
 
     private var group: MultiThreadedEventLoopGroup
 
@@ -29,12 +30,12 @@ class ModelData: ObservableObject {
     var logger: Logger {
         Logger(handler: handler)
     }
-}
 
-public extension Int {
-    static let defaultGRPCPort = 50051
-}
-
-public extension String {
-    static let defaultHost = "127.0.0.1"
+    @discardableResult
+    func sendLogMessage(_ message: String) -> SentMessage {
+        let sentMsg = SentMessage(message: message)
+        logger.info(message)
+        sentMsgs.append(sentMsg)
+        return sentMsg
+    }
 }

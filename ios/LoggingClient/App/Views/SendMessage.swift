@@ -34,6 +34,11 @@ struct SendMessage: View {
                         .disabled(isInvalid)
                     }
                 }
+                Section("History") {
+                    List(modelData.sentMsgs) { sentMsg in
+                        SentMessageRow(sentMsg: sentMsg)
+                    }
+                }
             }
             .sheet(isPresented: $showEditConnection) {
                 EditConnection(host: modelData.host, port: modelData.port)
@@ -49,7 +54,7 @@ struct SendMessage: View {
         guard !isInvalid else {
             return
         }
-        modelData.logger.info(message)
+        modelData.sendLogMessage(message)
         message = ""
     }
 }
