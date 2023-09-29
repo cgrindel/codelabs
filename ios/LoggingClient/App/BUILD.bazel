@@ -11,12 +11,16 @@ swift_library(
         "Models/ModelData.swift",
         "Preview Content/PreviewData.swift",
         "Views/ContentView.swift",
+        "Views/EditConnection.swift",
         "Views/SendMessage.swift",
     ],
     module_name = "LoggingClientApp",
     tags = ["manual"],
     visibility = ["//visibility:public"],
-    deps = ["//ios/Sources/GRPCLogger"],
+    deps = [
+        "//ios/Sources/GRPCLogger",
+        "//schema/logger:logger_client_swift_grpc",
+    ],
 )
 
 ios_application(
