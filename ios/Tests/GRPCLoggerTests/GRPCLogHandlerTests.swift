@@ -1,7 +1,7 @@
 @testable import GRPCLogger
 import XCTest
 
-class GRPCLoggerTests: XCTestCase {
+class GRPCLogHandlerTests: XCTestCase {
     func testSomething() {
         XCTFail("IMPLEMENT ME!")
     }
