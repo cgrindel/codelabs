@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct SendMessage: View {
+    @EnvironmentObject var modelData: ModelData
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -15,5 +17,6 @@ struct SendMessage: View {
 struct SendMessage_Previews: PreviewProvider {
     static var previews: some View {
         SendMessage()
+            .environmentObject(ModelData.previewData())
     }
 }

@@ -8,6 +8,8 @@ swift_library(
     name = "AppLib",
     srcs = [
         "LoggingClientApp.swift",
+        "Models/ModelData.swift",
+        "Preview Content/PreviewData.swift",
         "Views/ContentView.swift",
         "Views/SendMessage.swift",
     ],
