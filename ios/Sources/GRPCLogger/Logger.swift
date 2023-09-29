@@ -28,28 +28,28 @@ public struct Logger {
 }
 
 public extension Logger {
-    mutating func log(_ msg: Message) {
+    func log(_ msg: Message) {
         guard handler.logLevel.shouldLog(msg.level) else {
             return
         }
         handler.log(msg)
     }
 
-    mutating func log(level: Level, message: String) {
+    func log(level: Level, message: String) {
         let date = dateProvider()
         let msg = Message(level: level, message: message, date: date)
         log(msg)
     }
 
-    mutating func info(_ message: @autoclosure () -> String) {
+    func info(_ message: @autoclosure () -> String) {
         log(level: .info, message: message())
     }
 
-    mutating func warning(_ message: @autoclosure () -> String) {
+    func warning(_ message: @autoclosure () -> String) {
         log(level: .warning, message: message())
     }
 
-    mutating func error(_ message: @autoclosure () -> String) {
+    func error(_ message: @autoclosure () -> String) {
         log(level: .error, message: message())
     }
 }
