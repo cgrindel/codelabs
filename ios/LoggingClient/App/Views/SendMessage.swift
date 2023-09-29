@@ -5,6 +5,10 @@ struct SendMessage: View {
     @State private var showEditConnection = false
     @State var message = ""
 
+    var sortedSentMsgs: [SentMessage] {
+        modelData.sentMsgs.sorted { $0.date > $1.date }
+    }
+
     var body: some View {
         NavigationView {
             Form {
@@ -35,7 +39,7 @@ struct SendMessage: View {
                     }
                 }
                 Section("History") {
-                    List(modelData.sentMsgs) { sentMsg in
+                    List(sortedSentMsgs) { sentMsg in
                         SentMessageRow(sentMsg: sentMsg)
                     }
                 }
