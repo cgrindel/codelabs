@@ -21,6 +21,10 @@ public struct Logger {
         self.handler = handler
         self.dateProvider = dateProvider
     }
+
+    public init(handler: LogHandler) {
+        self.init(handler: handler, dateProvider: { Date() })
+    }
 }
 
 public extension Logger {
