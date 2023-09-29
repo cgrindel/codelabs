@@ -16,7 +16,7 @@ ios_ui_test(
     name = "UITests",
     size = "enormous",
     minimum_os_version = "16.0",
-    runner = "@build_bazel_rules_apple//apple/testing/default_runner:ios_xctestrun_ordered_runner",
+    runner = "@rules_apple//apple/testing/default_runner:ios_xctestrun_ordered_runner",
     # Mark as manual because they take a long time.
     tags = ["manual"],
     test_host = "//ios/LoggingClient/App",

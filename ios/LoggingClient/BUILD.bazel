@@ -12,7 +12,6 @@ xcodeproj(
         top_level_target(
             "//ios/LoggingClient/App",
             target_environments = [
-                "device",
                 "simulator",
             ],
         ),
