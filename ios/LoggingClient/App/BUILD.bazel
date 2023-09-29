@@ -1,3 +1,4 @@
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("@rules_apple//apple:ios.bzl", "ios_application")
 load("@rules_swift//swift:swift.bzl", "swift_library")
 
@@ -8,6 +9,7 @@ swift_library(
     srcs = [
         "LoggingClientApp.swift",
         "Views/ContentView.swift",
+        "Views/SendMessage.swift",
     ],
     module_name = "LoggingClientApp",
     tags = ["manual"],
@@ -30,4 +32,9 @@ ios_application(
     # So that rules_xcodeproj can see this
     visibility = ["//visibility:public"],
     deps = [":AppLib"],
+)
+
+build_test(
+    name = "AppBuildTest",
+    targets = [":App"],
 )
