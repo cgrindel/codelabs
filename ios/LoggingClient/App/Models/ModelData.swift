@@ -1,7 +1,7 @@
 import Combine
 import Foundation
 import GRPC
-import GRPCLogger
+import MyLogging
 import NIOCore
 import NIOPosix
 import schema_logger_logger_client_swift_grpc

@@ -1,14 +1,14 @@
 load("@rules_swift//swift:swift.bzl", "swift_library")
 
 swift_library(
-    name = "GRPCLogger",
+    name = "MyLogging",
     srcs = [
         "GRPCLogHandler.swift",
         "Level.swift",
         "LogHandler.swift",
         "Logger.swift",
     ],
-    module_name = "GRPCLogger",
+    module_name = "MyLogging",
     tags = ["manual"],
     visibility = ["//visibility:public"],
     deps = [

@@ -21,7 +21,7 @@ swift_library(
     tags = ["manual"],
     visibility = ["//visibility:public"],
     deps = [
-        "//ios/Sources/GRPCLogger",
+        "//ios/Sources/MyLogging",
         "//schema/logger:logger_client_swift_grpc",
         "@swiftpkg_swifterswift//:Sources_SwifterSwift",
     ],

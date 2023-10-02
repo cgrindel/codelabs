@@ -1,4 +1,4 @@
-@testable import GRPCLogger
+@testable import MyLogging
 
 import GRPC
 import NIOCore
