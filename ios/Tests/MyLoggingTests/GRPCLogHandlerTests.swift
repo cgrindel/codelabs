@@ -12,16 +12,20 @@ class GRPCLogHandlerTests: XCTestCase {
     public class TestLoggerProvider: LoggerProvider {
         public var interceptors: LoggerServerInterceptorFactoryProtocol?
         private var lock = NSLock()
-        var messages: [LogMessage] = []
+        private var _messages: [LogMessage] = []
 
         public func sendLogMessage(
             request: LogMessage,
             context: StatusOnlyCallContext
         ) -> EventLoopFuture<Empty> {
-            lock.lock()
-            messages.append(request)
-            lock.unlock()
+            lock.withLock {
+                _messages.append(request)
+            }
             return context.eventLoop.makeSucceededFuture(Empty())
+        }
+
+        var messages: [LogMessage] {
+            lock.withLock { _messages }
         }
     }
 
