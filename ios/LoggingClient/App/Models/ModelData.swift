@@ -12,6 +12,9 @@ class ModelData: ObservableObject {
     @Published var sentMsgs: [SentMessage] = []
 
     private var group: MultiThreadedEventLoopGroup
+    private var _channel: ClientConnection?
+    private var _handler: GRPCLogHandler?
+    private var _logger: Logger?
 
     init(host: String = .defaultHost, port: Int = .defaultGRPCPort, numberOfThreads: Int = 1) {
         self.host = host
@@ -20,16 +23,43 @@ class ModelData: ObservableObject {
     }
 
     var channel: ClientConnection {
-        ClientConnection.insecure(group: group).connect(host: host, port: port)
+        if let channel = _channel {
+            return channel
+        }
+        let channel = ClientConnection.insecure(group: group).connect(host: host, port: port)
+        _channel = channel
+        return channel
     }
 
     var handler: GRPCLogHandler {
-        GRPCLogHandler(loggerClient: LoggerAsyncClient(channel: channel))
+        if let handler = _handler {
+            return handler
+        }
+        let handler = GRPCLogHandler(loggerClient: LoggerAsyncClient(channel: channel))
+        _handler = handler
+        return handler
     }
 
     var logger: Logger {
-        Logger(handler: handler)
+        if let logger = _logger {
+            return logger
+        }
+        let logger = Logger(handler: handler)
+        _logger = logger
+        return logger
     }
+
+    // var channel: ClientConnection {
+    //     ClientConnection.insecure(group: group).connect(host: host, port: port)
+    // }
+
+    // var handler: GRPCLogHandler {
+    //     GRPCLogHandler(loggerClient: LoggerAsyncClient(channel: channel))
+    // }
+
+    // var logger: Logger {
+    //     Logger(handler: handler)
+    // }
 
     @discardableResult
     func sendLogMessage(_ message: String) -> SentMessage {
