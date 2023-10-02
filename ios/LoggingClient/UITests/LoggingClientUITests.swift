@@ -15,6 +15,13 @@ final class LoggingClientUITests: XCTestCase {
         app.launch()
     }
 
+    func typeText(_ value: String, in textField: XCUIElement) {
+        textField.tap()
+        let keyboard = app.keyboards.element
+        XCTAssertTrue(keyboard.waitForExistence(timeout: 0.5))
+        textField.typeText(value)
+    }
+
     func test_EditConnection_Cancel() throws {
         // Check the initial connection info
         let connInfo = app.staticTexts["connectionInfoText"]
@@ -24,9 +31,13 @@ final class LoggingClientUITests: XCTestCase {
         // Launch the edit connection screen and tap cancel
         app.buttons["editConnectionButton"].tap()
         let host = app.textFields["hostTextField"]
-        host.typeText("123.1.1.2")
+        // host.tap()
+        // host.typeText("123.1.1.2")
+        typeText("123.1.1.2", in: host)
         let port = app.textFields["portTextField"]
-        port.typeText("123")
+        // port.tap()
+        // port.typeText("123")
+        typeText("123", in: port)
         let cancel = app.buttons["cancelConnectionButton"]
         cancel.tap()
         XCTAssertFalse(cancel.waitForExistence(timeout: 0.5))
@@ -37,7 +48,26 @@ final class LoggingClientUITests: XCTestCase {
     }
 
     func test_EditConnection_Save() throws {
-        XCTFail("IMPLEMENT ME!")
+        // Check the initial connection info
+        let connInfo = app.staticTexts["connectionInfoText"]
+        XCTAssertTrue(connInfo.exists)
+        XCTAssertEqual(connInfo.label, "127.0.0.1 : 50051")
+
+        // Launch the edit connection screen and tap cancel
+        app.buttons["editConnectionButton"].tap()
+        let host = app.textFields["hostTextField"]
+        host.tap()
+        host.typeText("123.1.1.2")
+        let port = app.textFields["portTextField"]
+        port.tap()
+        port.typeText("123")
+        let save = app.buttons["saveConnectionButton"]
+        save.tap()
+        XCTAssertFalse(save.waitForExistence(timeout: 0.5))
+
+        // Confirm that it has not changed
+        XCTAssertTrue(connInfo.exists)
+        XCTAssertEqual(connInfo.label, "123.1.1.2 : 123")
     }
 
     func testSendMessage() throws {
