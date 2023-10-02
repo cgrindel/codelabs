@@ -23,6 +23,7 @@ swift_library(
     deps = [
         "//ios/Sources/GRPCLogger",
         "//schema/logger:logger_client_swift_grpc",
+        "@swiftpkg_swifterswift//:Sources_SwifterSwift",
     ],
 )
 
