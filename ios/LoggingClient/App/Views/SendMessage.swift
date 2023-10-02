@@ -17,10 +17,12 @@ struct SendMessage: View {
                         Image(systemName: "wifi.square.fill")
                             .foregroundColor(.blue)
                         Text("\(modelData.host) : \(String(format: "%d", modelData.port))")
+                            .accessibilityIdentifier("connectionInfoText")
                         Spacer()
                         Button("Edit") {
                             showEditConnection.toggle()
                         }
+                        .accessibilityIdentifier("editConnectionButton")
                     }
                 }
                 Section("Log Message") {
@@ -29,6 +31,7 @@ struct SendMessage: View {
                             .onSubmit {
                                 sendMessage()
                             }
+                            .accessibilityIdentifier("messageTextField")
                         Spacer()
                         Button {
                             sendMessage()
@@ -36,6 +39,7 @@ struct SendMessage: View {
                             Image(systemName: "paperplane")
                         }
                         .disabled(isInvalid)
+                        .accessibilityIdentifier("sendMessageButton")
                     }
                 }
                 Section("History") {

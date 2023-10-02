@@ -12,6 +12,7 @@ struct EditConnection: View {
                 Section("Connection") {
                     LabeledContent {
                         TextField("Host", text: $host)
+                            .accessibilityIdentifier("hostTextField")
                     } label: {
                         Text("Host")
                     }
@@ -20,6 +21,7 @@ struct EditConnection: View {
                             get: { String(self.port) },
                             set: { self.port = Int($0) ?? 0 }
                         ))
+                        .accessibilityIdentifier("portTextField")
                     } label: {
                         Text("Port")
                     }
@@ -31,12 +33,14 @@ struct EditConnection: View {
                     Button(action: cancel) {
                         Text("Cancel")
                     }
+                    .accessibilityIdentifier("cancelConnectionButton")
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: save) {
                         Text("Save")
                     }
                     .disabled(isInvalid)
+                    .accessibilityIdentifier("saveConnectionButton")
                 }
             }
         }
