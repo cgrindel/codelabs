@@ -11,6 +11,8 @@ public final class TestLoggerProvider: LoggerAsyncProvider {
     private var _logMessages: [LogMessage] = []
     private var lock = NSLock()
 
+    public init() {}
+
     public func sendLogMessage(
         request: LogMessage,
         context _: GRPCAsyncServerCallContext

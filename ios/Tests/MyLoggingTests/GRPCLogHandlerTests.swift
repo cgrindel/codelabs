@@ -1,6 +1,7 @@
 @testable import MyLogging
 
 import GRPC
+import MyLoggingTestHelpers
 import NIOCore
 import NIOPosix
 import schema_logger_logger_client_swift_grpc
@@ -9,30 +10,10 @@ import schema_logger_logger_server_swift_grpc
 import XCTest
 
 class GRPCLogHandlerTests: XCTestCase {
-    public class TestLoggerProvider: LoggerProvider {
-        public var interceptors: LoggerServerInterceptorFactoryProtocol?
-        private var lock = NSLock()
-        private var _messages: [LogMessage] = []
-
-        public func sendLogMessage(
-            request: LogMessage,
-            context: StatusOnlyCallContext
-        ) -> EventLoopFuture<Empty> {
-            lock.withLock {
-                _messages.append(request)
-            }
-            return context.eventLoop.makeSucceededFuture(Empty())
-        }
-
-        var messages: [LogMessage] {
-            lock.withLock { _messages }
-        }
-    }
-
     private var group: MultiThreadedEventLoopGroup!
     private var server: Server!
     private var channel: ClientConnection!
-    private var provider: TestLoggerProvider!
+    private var provider = TestLoggerProvider()
 
     override func setUp() {
         super.setUp()
@@ -40,26 +21,17 @@ class GRPCLogHandlerTests: XCTestCase {
     }
 
     override func tearDown() async throws {
-        if channel != nil {
-            try await channel.close().get()
-            channel = nil
-        }
-
-        if server != nil {
-            try await server.close().get()
-            server = nil
-        }
-
-        if group != nil {
-            try await group.shutdownGracefully()
-            group = nil
-        }
+        try await channel?.close().get()
+        try await server?.close().get()
+        try await group.shutdownGracefully()
+        channel = nil
+        server = nil
+        group = nil
 
         try await super.tearDown()
     }
 
     private func startServerAndClient() throws -> LoggerAsyncClient {
-        provider = TestLoggerProvider()
         server = try Server.insecure(group: group)
             .withServiceProviders([provider])
             .bind(host: "127.0.0.1", port: 0)
@@ -77,22 +49,11 @@ class GRPCLogHandlerTests: XCTestCase {
         let msg = Logger.Message(level: .info, message: message, date: date)
         handler.log(msg)
 
-        // Wait for the provider to handle the log message
-        var attempts = 0
-        while attempts < 10000 {
-            do {
-                if provider.messages.count > 0 {
-                    break
-                }
-                attempts += 1
-                try await Task.sleep(nanoseconds: 1000)
-            } catch {
-                break
-            }
-        }
+        let logMsgs = try await provider.waitForLogMessages()
+
         var expected = LogMessage()
         expected.time = Int64(date.timeIntervalSince1970)
         expected.message = message
-        XCTAssertEqual(provider.messages, [expected])
+        XCTAssertEqual(logMsgs, [expected])
     }
 }

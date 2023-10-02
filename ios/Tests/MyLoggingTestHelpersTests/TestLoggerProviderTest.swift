@@ -36,18 +36,18 @@ class TestLoggerProviderTests: XCTestCase {
         client = LoggerAsyncClient(channel: clientConnection)
     }
 
-    override func tearDownWithError() throws {
-        try clientConnection.close().wait()
+    override func tearDown() async throws {
+        try await clientConnection.close().get()
         try clientEventLoopGroup.syncShutdownGracefully()
         clientConnection = nil
         clientEventLoopGroup = nil
 
-        try server.close().wait()
+        try await server.close().get()
         try serverEventLoopGroup.syncShutdownGracefully()
         server = nil
         serverEventLoopGroup = nil
 
-        try super.tearDownWithError()
+        try await super.tearDown()
     }
 
     func test_sendLogMessage() async throws {
