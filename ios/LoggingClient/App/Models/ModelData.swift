@@ -7,56 +7,50 @@ import NIOPosix
 import schema_logger_logger_client_swift_grpc
 
 class ModelData: ObservableObject {
-    @Published var host: String
-    @Published var port: Int
+    @Published private(set) var host: String
+    @Published private(set) var port: Int
     @Published var sentMsgs: [SentMessage] = []
 
-    private var group: MultiThreadedEventLoopGroup
+    private var group: EventLoopGroup
     private var _channel: ClientConnection?
-    // private var _handler: GRPCLogHandler?
     private var _logger: Logger?
 
-    init(host: String = .defaultHost, port: Int = .defaultGRPCPort, numberOfThreads: Int = 1) {
+    init(
+        host: String = .defaultHost,
+        port: Int = .defaultGRPCPort,
+        group: EventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
+    ) {
         self.host = host
         self.port = port
-        group = MultiThreadedEventLoopGroup(numberOfThreads: numberOfThreads)
+        self.group = group
     }
 
-    var channel: ClientConnection {
+    func setConnectionInfo(host: String, port: Int) {
+        closeConnection()
+        self.host = host
+        self.port = port
+    }
+
+    func closeConnection() {
+        _logger = nil
         if let channel = _channel {
-            return channel
+            _channel = nil
+            Task {
+                try? await channel.close().get()
+            }
         }
-        let channel = ClientConnection.insecure(group: group).connect(host: host, port: port)
-        _channel = channel
-        return channel
     }
-
-    // var handler: GRPCLogHandler {
-    //     if let handler = _handler {
-    //         return handler
-    //     }
-    //     let handler = GRPCLogHandler(loggerClient: LoggerAsyncClient(channel: channel))
-    //     _handler = handler
-    //     return handler
-    // }
 
     var logger: Logger {
         if let logger = _logger {
             return logger
         }
+        let channel = ClientConnection.insecure(group: group).connect(host: host, port: port)
+        _channel = channel
         let handler = GRPCLogHandler(loggerClient: LoggerAsyncClient(channel: channel))
         let logger = Logger(handler: handler)
         _logger = logger
         return logger
-    }
-
-    func closeConnection() async throws {
-        _logger = nil
-        // _handler = nil
-        if let channel = _channel {
-            _channel = nil
-            try await channel.close().get()
-        }
     }
 
     @discardableResult

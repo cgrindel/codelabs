@@ -55,8 +55,7 @@ struct EditConnection: View {
     }
 
     func save() {
-        modelData.host = host
-        modelData.port = port
+        modelData.setConnectionInfo(host: host, port: port)
         dismiss()
     }
 }
