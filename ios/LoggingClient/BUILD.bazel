@@ -8,6 +8,10 @@ xcodeproj(
     name = "xcodeproj",
     project_name = "LoggingClient",
     tags = ["manual"],
+    target_compatible_with = select({
+        "@platforms//os:macos": [],
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
     top_level_targets = [
         top_level_target(
             "//ios/LoggingClient/App",
@@ -17,8 +21,4 @@ xcodeproj(
         ),
         "//ios/LoggingClient/UITests",
     ],
-    target_compatible_with = select({
-        "@platforms//os:macos": [], 
-        "//conditions:default": ["@platforms//:incompatible"],
-    }),
 )

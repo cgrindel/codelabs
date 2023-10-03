@@ -11,15 +11,15 @@ swift_library(
     ],
     module_name = "UITests",
     tags = ["manual"],
+    target_compatible_with = select({
+        "@platforms//os:macos": [],
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
     deps = [
         "//ios/Sources/MyLoggingTestHelpers",
         "//schema/logger:logger_server_swift_grpc",
         "//schema/logger:logger_swift_proto",
     ],
-    target_compatible_with = select({
-        "@platforms//os:macos": [], 
-        "//conditions:default": ["@platforms//:incompatible"],
-    }),
 )
 
 ios_ui_test(
@@ -29,12 +29,12 @@ ios_ui_test(
     runner = "@rules_apple//apple/testing/default_runner:ios_xctestrun_ordered_runner",
     # Mark as manual because they take a long time.
     tags = ["manual"],
+    target_compatible_with = select({
+        "@platforms//os:macos": [],
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
     test_host = "//ios/LoggingClient/App",
     # So that rules_xcodeproj can see this
     visibility = ["//visibility:public"],
     deps = [":UITestsLib"],
-    target_compatible_with = select({
-        "@platforms//os:macos": [], 
-        "//conditions:default": ["@platforms//:incompatible"],
-    }),
 )

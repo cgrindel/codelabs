@@ -19,16 +19,16 @@ swift_library(
     ],
     module_name = "LoggingClientApp",
     tags = ["manual"],
+    target_compatible_with = select({
+        "@platforms//os:macos": [],
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
     visibility = ["//visibility:public"],
     deps = [
         "//ios/Sources/MyLogging",
         "//schema/logger:logger_client_swift_grpc",
         "@swiftpkg_swifterswift//:Sources_SwifterSwift",
     ],
-    target_compatible_with = select({
-        "@platforms//os:macos": [], 
-        "//conditions:default": ["@platforms//:incompatible"],
-    }),
 )
 
 ios_application(
@@ -44,13 +44,13 @@ ios_application(
         ["Assets.xcassets/**"],
         exclude = ["Assets.xcassets/AppIcon.appiconset/**"],
     ),
+    target_compatible_with = select({
+        "@platforms//os:macos": [],
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
     # So that rules_xcodeproj can see this
     visibility = ["//visibility:public"],
     deps = [":AppLib"],
-    target_compatible_with = select({
-        "@platforms//os:macos": [], 
-        "//conditions:default": ["@platforms//:incompatible"],
-    }),
 )
 
 build_test(
