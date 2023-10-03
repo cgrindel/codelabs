@@ -6,6 +6,7 @@ swift_test(
         "GRPCLogHandlerTests.swift",
         "LevelTests.swift",
         "LoggerTests.swift",
+        "main.swift",
     ],
     module_name = "MyLoggingTests",
     deps = [

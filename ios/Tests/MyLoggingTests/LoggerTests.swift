@@ -54,4 +54,12 @@ class LoggerTests: XCTestCase {
             Logger.Message(level: .error, message: message, date: date),
         ])
     }
+
+    static var allTests = [
+      ("test_log_ShouldLog", test_log_ShouldLog),
+      ("test_log_ShouldNotLog", test_log_ShouldNotLog),
+      ("test_info", test_info),
+      ("test_warning", test_warning),
+      ("test_error", test_error),
+    ]
 }

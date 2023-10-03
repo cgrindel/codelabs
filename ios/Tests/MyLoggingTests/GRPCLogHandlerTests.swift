@@ -56,4 +56,8 @@ class GRPCLogHandlerTests: XCTestCase {
         expected.message = message
         XCTAssertEqual(logMsgs, [expected])
     }
+
+    static var allTests = [
+      ("test_log", asyncTest(test_log)),
+    ]
 }

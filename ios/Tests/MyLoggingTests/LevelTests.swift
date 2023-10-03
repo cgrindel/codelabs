@@ -26,4 +26,8 @@ class LevelTests: XCTestCase {
             XCTAssertEqual(result, test.exp, "LogLevel: \(test.logLevel), Level: \(test.level)")
         }
     }
+
+    static var allTests = [
+      ("testShouldLog", testShouldLog),
+    ]
 }

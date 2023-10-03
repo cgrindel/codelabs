@@ -59,4 +59,8 @@ class TestLoggerProviderTests: XCTestCase {
         let logMsgs = try await provider.waitForLogMessages()
         XCTAssertEqual(logMsgs, [logMsg])
     }
+
+    static var allTests = [
+      ("test_sendLogMessage", asyncTest(test_sendLogMessage)),
+    ]
 }
