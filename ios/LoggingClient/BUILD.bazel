@@ -17,4 +17,8 @@ xcodeproj(
         ),
         "//ios/LoggingClient/UITests",
     ],
+    target_compatible_with = select({
+        "@platforms//os:macos": [], 
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
 )

@@ -16,6 +16,10 @@ swift_library(
         "//schema/logger:logger_server_swift_grpc",
         "//schema/logger:logger_swift_proto",
     ],
+    target_compatible_with = select({
+        "@platforms//os:macos": [], 
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
 )
 
 ios_ui_test(
@@ -29,4 +33,8 @@ ios_ui_test(
     # So that rules_xcodeproj can see this
     visibility = ["//visibility:public"],
     deps = [":UITestsLib"],
+    target_compatible_with = select({
+        "@platforms//os:macos": [], 
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
 )
