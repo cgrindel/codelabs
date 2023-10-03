@@ -1,14 +1,6 @@
-//
-//  LoggingClientUITestsLaunchTests.swift
-//  LoggingClientUITests
-//
-//  Created by Chuck Grindel on 9/29/23.
-//
-
 import XCTest
 
 final class LoggingClientUITestsLaunchTests: XCTestCase {
-
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }
