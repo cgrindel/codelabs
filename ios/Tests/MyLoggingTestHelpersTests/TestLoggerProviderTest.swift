@@ -60,7 +60,9 @@ class TestLoggerProviderTests: XCTestCase {
         XCTAssertEqual(logMsgs, [logMsg])
     }
 
-    static var allTests = [
-      ("test_sendLogMessage", asyncTest(test_sendLogMessage)),
-    ]
+    #if os(Linux)
+        static var allTests = [
+            ("test_sendLogMessage", asyncTest(test_sendLogMessage)),
+        ]
+    #endif
 }

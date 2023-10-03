@@ -55,11 +55,13 @@ class LoggerTests: XCTestCase {
         ])
     }
 
-    static var allTests = [
-      ("test_log_ShouldLog", test_log_ShouldLog),
-      ("test_log_ShouldNotLog", test_log_ShouldNotLog),
-      ("test_info", test_info),
-      ("test_warning", test_warning),
-      ("test_error", test_error),
-    ]
+    #if os(Linux)
+        static var allTests = [
+            ("test_log_ShouldLog", test_log_ShouldLog),
+            ("test_log_ShouldNotLog", test_log_ShouldNotLog),
+            ("test_info", test_info),
+            ("test_warning", test_warning),
+            ("test_error", test_error),
+        ]
+    #endif
 }

@@ -27,7 +27,9 @@ class LevelTests: XCTestCase {
         }
     }
 
-    static var allTests = [
-      ("testShouldLog", testShouldLog),
-    ]
+    #if os(Linux)
+        static var allTests = [
+            ("testShouldLog", testShouldLog),
+        ]
+    #endif
 }
