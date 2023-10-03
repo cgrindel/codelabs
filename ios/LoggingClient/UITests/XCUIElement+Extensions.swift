@@ -4,11 +4,7 @@ extension XCUIElement {
     // Inspired by
     // https://stackoverflow.com/questions/32821880/ui-test-deleting-text-in-text-field
     func enterText(_ text: String, app: XCUIApplication, replaceExisting: Bool = true) {
-        guard let stringValue = value as? String else {
-            XCTFail("Attempted to enter text into element without a string value.")
-            return
-        }
-        // Get focus
+        // Set focus
         tap()
 
         // Wait for the keyboard to appear
