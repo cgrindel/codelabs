@@ -11,6 +11,11 @@ swift_library(
     ],
     module_name = "UITests",
     tags = ["manual"],
+    deps = [
+        "//ios/Sources/MyLoggingTestHelpers",
+        "//schema/logger:logger_server_swift_grpc",
+        "//schema/logger:logger_swift_proto",
+    ],
 )
 
 ios_ui_test(

@@ -1,3 +1,8 @@
+import GRPC
+import MyLoggingTestHelpers
+import NIOPosix
+import schema_logger_logger_proto
+import schema_logger_logger_server_swift_grpc
 import XCTest
 
 final class LoggingClientUITests: XCTestCase {
@@ -46,7 +51,29 @@ final class LoggingClientUITests: XCTestCase {
         XCTAssertEqual(connInfo.label, "123.1.1.2 : 123")
     }
 
-    func testSendMessage() throws {
-        XCTFail("IMPLEMENT ME!")
+    func test_SendMessage() throws {
+        // Set up server
+        let serverEventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
+        defer { try? serverEventLoopGroup.syncShutdownGracefully() }
+        let provider = TestLoggerProvider()
+        let server = try Server.insecure(group: serverEventLoopGroup)
+            .withServiceProviders([provider])
+            .bind(host: "127.0.0.1", port: 0)
+            .wait()
+        defer { try? server.close().wait() }
+        let serverPort = server.channel.localAddress!.port!
+
+        // Edit the connection
+        app.buttons["editConnectionButton"].tap()
+        app.textFields["portTextField"].enterText(String(format: "%d", serverPort), app: app)
+        let save = app.buttons["saveConnectionButton"]
+        save.tap()
+        XCTAssertFalse(save.waitForExistence(timeout: 0.5))
+
+        // Send message
+        app.textFields["messageTextField"].enterText("Hello", app: app)
+        app.buttons["sendMessageButton"].tap()
+        let sentMsg = app.staticTexts["Hello"]
+        XCTAssertTrue(sentMsg.waitForExistence(timeout: 0.5))
     }
 }
