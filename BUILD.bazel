@@ -56,3 +56,14 @@ gazelle(
     name = "gazelle",
     gazelle = ":gazelle_bin",
 )
+
+# Any tests that are too expensive to run when using `bazel test //...` should
+# be marked manual and listed in this test_suite.
+test_suite(
+    name = "manual_tests",
+    tags = ["manual"],
+    tests = [
+        "//ios/LoggingClient/UITests",
+    ],
+    visibility = ["//:__subpackages__"],
+)
