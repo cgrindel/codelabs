@@ -11,10 +11,21 @@ on:
 jobs:
   test:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+
+    env:
+      # Required for rules_swift
+      # https://github.com/bazelbuild/rules_swift#3-additional-configuration-linux-only
+      CC: clang
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Install the Swift toolchain
+      - uses: cgrindel/gha_install_swift_on_ubuntu@v1
+        with:
+          swift_release_tag: "swift-5.8.1-RELEASE"
+          ubuntu_version: "22.04"
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
@@ -26,6 +37,15 @@ jobs:
             "~/.cache/bazel-repo"
           key: bazel-cache-${{ hashFiles('**/BUILD.bazel', '**/*.bzl', 'MODULE.bazel') }}
           restore-keys: bazel-cache-
+
+      # Make the PATH available to build actions so that the Swift toolchain is discoverable.
+      - name: Update local.bazelrc with Linux Flags
+        shell: bash
+        run: |
+          cat >> "local.bazelrc" <<EOF
+          # Need to expose the PATH so that the Swift toolchain can be found
+          build --action_env=PATH
+          EOF
 
       - name: bazel test //...
         env:
