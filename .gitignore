@@ -1,2 +1,8 @@
 /bazel-*
 node_modules/
+
+# Swift package manager build directory
+.build/
+
+# Generated Xcode project
+*.xcodeproj/
