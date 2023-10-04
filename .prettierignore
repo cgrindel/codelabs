@@ -1,1 +1,2 @@
 maven_install.json
+schema/logger/*.d.ts

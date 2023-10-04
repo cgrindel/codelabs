@@ -3,14 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  PartialMessage,
-  PlainMessage,
-} from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
@@ -33,25 +26,13 @@ export declare class LogMessage extends Message<LogMessage> {
   static readonly typeName = "LogMessage";
   static readonly fields: FieldList;
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): LogMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LogMessage;
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): LogMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LogMessage;
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): LogMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LogMessage;
 
-  static equals(
-    a: LogMessage | PlainMessage<LogMessage> | undefined,
-    b: LogMessage | PlainMessage<LogMessage> | undefined
-  ): boolean;
+  static equals(a: LogMessage | PlainMessage<LogMessage> | undefined, b: LogMessage | PlainMessage<LogMessage> | undefined): boolean;
 }
 
 /**
@@ -64,23 +45,12 @@ export declare class Empty extends Message<Empty> {
   static readonly typeName = "Empty";
   static readonly fields: FieldList;
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): Empty;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Empty;
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): Empty;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Empty;
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): Empty;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Empty;
 
-  static equals(
-    a: Empty | PlainMessage<Empty> | undefined,
-    b: Empty | PlainMessage<Empty> | undefined
-  ): boolean;
+  static equals(a: Empty | PlainMessage<Empty> | undefined, b: Empty | PlainMessage<Empty> | undefined): boolean;
 }
+
