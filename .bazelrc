@@ -1,3 +1,6 @@
+# Test output information
+test --test_output=errors --test_summary=detailed
+
 common --enable_bzlmod
 
 # The CNIOBoringSSL library uses C++14 features like 'enable_if_t' macro support.
